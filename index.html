@@ -38,10 +38,15 @@
             <div class="p-6 flex-1">
                 <div class="bg-gradient-to-r bg-indigo-800
                     text-white rounded-sm p-8 mb-8 shadow-xl">
-                    <div class="w-6 h-6 rounded-sm bg-gradient-to-tr from-[#FFD000] from-50% to-[#008542] to-50% shadow-sm"></div>
-                    <div id="displayTotal" class="text-4xl font-bold tracking-tight">
-                        PetroCalc
-                    </div> 
+                    <header class="flex items-center gap-3">
+                          <!-- Símbolo Petrobras (Sem o BR) -->
+                          <div class="relative w-7 h-7 bg-[#007f3f] rounded-sm shadow-sm flex flex-col justify-end p-[2px]">
+                            <!-- Faixa Amarela Superior -->
+                            <div class="absolute top-[2px] left-[2px] right-[2px] h-[5px] bg-[#ffc632]"></div>
+                          </div>
+                          <!-- Título na mesma linha -->
+                          <h1 class="text-2xl font-bold text-white tracking-wide">PetroCalc</h1>
+                    </header>
                 </div>
                 <div class="w-full max-w-xs mx-auto">
                   <label class="block text-sm font-medium text-slate-500 mb-2">Selecione o Produto</label>
