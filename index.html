@@ -124,36 +124,38 @@
             
             </div>
         </div>
-        // Intercepta o envio do formulário
-        document.querySelector('form').addEventListener('submit', async (event) => {
-          event.preventDefault(); // Evita que a página recarregue
-        
-          // Captura os dados digitados na tela
-          const dados = {
-            produto: document.getElementById('produto').value,
-            densidade: document.getElementById('densidade').value,
-            temperatura: document.getElementById('temperatura').value
-          };
-        
-          try {
-            // Envia os dados para o seu servidor (mude a URL para a do seu servidor)
-            const resposta = await fetch('https://github.com/Dennis-bp575/PetroCalc/edit/main/', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(dados)
+        <script>
+            // Intercepta o envio do formulário
+            document.querySelector('form').addEventListener('submit', async (event) => {
+              event.preventDefault(); // Evita que a página recarregue
+            
+              // Captura os dados digitados na tela
+              const dados = {
+                produto: document.getElementById('produto').value,
+                densidade: document.getElementById('densidade').value,
+                temperatura: document.getElementById('temperatura').value
+              };
+            
+              try {
+                // Envia os dados para o seu servidor (mude a URL para a do seu servidor)
+                const resposta = await fetch('https://github.com/Dennis-bp575/PetroCalc/edit/main/', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify(dados)
+                });
+            
+                const resultadoBackend = await reply.json();
+            
+                // Mostra o resultado na tela de forma elegante
+                document.getElementById('resultado-texto').innerText = resultadoBackend.valorCalculado;
+                document.getElementById('resultado-container').classList.remove('hidden');
+            
+              } catch (erro) {
+                console.error('Erro ao conectar com o servidor:', erro);
+                alert('Não foi possível conectar ao servidor backend.');
+              }
             });
-        
-            const resultadoBackend = await reply.json();
-        
-            // Mostra o resultado na tela de forma elegante
-            document.getElementById('resultado-texto').innerText = resultadoBackend.valorCalculado;
-            document.getElementById('resultado-container').classList.remove('hidden');
-        
-          } catch (erro) {
-            console.error('Erro ao conectar com o servidor:', erro);
-            alert('Não foi possível conectar ao servidor backend.');
-          }
-        });
+        </script>
 
 
 
