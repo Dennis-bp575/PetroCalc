@@ -125,37 +125,49 @@
             </div>
         </div>
         <script>
-            // Intercepta o envio do formulário
-            document.querySelector('form').addEventListener('submit', async (event) => {
-              event.preventDefault(); // Evita que a página recarregue
+              // Intercepta o clique do botão / envio do formulário
+              document.querySelector('form').addEventListener('submit', function(event) {
+                event.preventDefault(); // Impede a página de recarregar
             
-              // Captura os dados digitados na tela
-              const dados = {
-                produto: document.getElementById('produto').value,
-                densidade: document.getElementById('densidade').value,
-                temperatura: document.getElementById('temperatura').value
-              };
+                // 1. Captura os valores que o usuário digitou ou selecionou na tela
+                const produto = document.getElementById('produto').value;
+                const densidadeTexto = document.getElementById('densidade').value;
+                const temperaturaTexto = document.getElementById('temperatura').value;
             
-              try {
-                // Envia os dados para o seu servidor (mude a URL para a do seu servidor)
-                const resposta = await fetch('https://github.com/Dennis-bp575/PetroCalc/edit/main/', {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify(dados)
-                });
+                // 2. Limpeza dos dados: Transforma textos com vírgula em números decimais que o JS entende
+                const densidadeNum = parseFloat(densidadeTexto.replace(',', '.'));
+                const temperaturaNum = parseFloat(temperaturaTexto.replace(',', '.'));
             
-                const resultadoBackend = await resposta.json();
+                // Validação simples caso o usuário apague tudo e deixe em branco
+                if (isNaN(densidadeNum) || isNaN(temperaturaNum)) {
+                  alert("Por favor, preencha os campos de densidade e temperatura corretamente.");
+                  return;
+                }
             
-                // Mostra o resultado na tela de forma elegante
-                document.getElementById('resultado-texto').innerText = resultadoBackend.valorCalculado;
+                // 3. --- SUA FÓRMULA DE CÁLCULO ---
+                // Criei uma lógica de exemplo baseada no produto selecionado
+                let resultadoFinal = 0;
+            
+                if (produto === 'petroleo') {
+                  resultadoFinal = densidadeNum * temperaturaNum; 
+                } else if (produto === 'gasolina') {
+                  resultadoFinal = densidadeNum * 1.2;
+                } else if (produto === 'diesel') {
+                  resultadoFinal = densidadeNum * 1.1;
+                } else if (produto === 'alcool') {
+                  resultadoFinal = densidadeNum * 0.9;
+                }
+                // ----------------------------------
+            
+                // 4. Formata o resultado de volta para o padrão brasileiro (com vírgula e 4 casas decimais)
+                const resultado Formatado = resultadoFinal.toFixed(4).replace('.', ',');
+            
+                // 5. Exibe o resultado na tela de forma elegante
+                document.getElementById('resultado-texto').innerText = resultadoFormatado;
                 document.getElementById('resultado-container').classList.remove('hidden');
-            
-              } catch (erro) {
-                console.error('Erro ao conectar com o servidor:', erro);
-                alert('Não foi possível conectar ao servidor backend.');
-              }
-            });
+              });
         </script>
+
 
 
 
