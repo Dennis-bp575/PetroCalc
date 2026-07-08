@@ -165,7 +165,7 @@
                         
                         const resultadoFormatado = resultadoFinal.toFixed(4).replace('.', ',');
                         let densidadeAPI = Number(resultadoFinal.toFixed(4))
-                        let resultadoAPI = (141.5/densidadeAPI) - 131.5;
+                        let resultadoAPI = (141.5/resultadoFinal) - 131.5;
                         let resultadoAPIFormatado =
                             (Math.floor(resultadoAPI * 10) / 10)
                                 .toFixed(1)
