@@ -144,7 +144,7 @@
                   body: JSON.stringify(dados)
                 });
             
-                const resultadoBackend = await reply.json();
+                const resultadoBackend = await resposta.json();
             
                 // Mostra o resultado na tela de forma elegante
                 document.getElementById('resultado-texto').innerText = resultadoBackend.valorCalculado;
