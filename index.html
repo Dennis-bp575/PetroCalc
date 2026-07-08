@@ -164,7 +164,11 @@
                         // 4. Formata o resultado de volta para o padrão brasileiro (com vírgula e 4 casas decimais)
                         const resultadoFormatado = resultadoFinal.toFixed(4).replace('.', ',');
                         let resultadoAPI = (141.5/resultadoFinal) - 131.5;
-                        resultadoAPIFormatado = resultadoAPI.toFixed(1).replace('.', ',');
+                        let resultadoAPIFormatado =
+                            (Math.floor(resultadoAPI * 10) / 10)
+                                .toFixed(1)
+                                .replace('.', ',');
+                        
                     
                         // 5. Exibe o resultado na tela de forma elegante
                         document.getElementById('resultado-texto').innerText = resultadoFormatado;
