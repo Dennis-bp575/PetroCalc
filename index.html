@@ -170,8 +170,11 @@
                             resultadoAPI  //  teste (Math.floor(resultadoAPI * 10) / 10)
                                 .toFixed(1)
                                 .replace('.', ',');
+                        console.log(resultadoFinal);
+                        console.log(densidadeAPI);
+                        console.log(resultadoAPI);
+                        console.log(resultadoAPIFormatado);
                         
-                    
                         // 5. Exibe o resultado na tela de forma elegante
                         document.getElementById('resultado-texto').innerText = resultadoFormatado;
                         document.getElementById('resultado-API').innerText = resultadoAPIFormatado;
