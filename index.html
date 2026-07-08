@@ -50,32 +50,25 @@
                 </div>
                 
                 <div class="space-y-6 max-w-md w-full mx-auto">
-                      <label class="block text-sm font-medium text-slate-500 mb-2">Selecione o Produto</label>
-                      <div class="space-y-2">
-                            <!-- Opção: Petróleo -->
-                            <label class="flex items-center justify-between p-3 rounded-none border border-slate-700 bg-indigo-500 hover:bg-slate-800 cursor-pointer transition text-white">
-                                  <span class="font-extrabold text-sm">Petróleo</span>
-                                  <input type="radio" name="produto" value="petroleo" class="w-4 h-4 text-blue-600 bg-slate-700 border-slate-600 focus:ring-blue-500">
-                            </label>
-                    
-                            <!-- Opção: Diesel -->
-                            <label class="flex items-center justify-between p-3 rounded-none border border-slate-700 bg-indigo-500 hover:bg-slate-800 cursor-pointer transition text-white">
-                              <span class="font-extrabold text-sm">Diesel</span>
-                              <input type="radio" name="produto" value="diesel" class="w-4 h-4 text-blue-600 bg-slate-700 border-slate-600 focus:ring-blue-500">
-                            </label>
-                    
-                            <!-- Opção: Gasolina -->
-                            <label class="flex items-center justify-between p-3 rounded-none border border-slate-700 bg-indigo-500 hover:bg-slate-800 cursor-pointer transition text-white">
-                              <span class="font-extrabold text-sm">Gasolina</span>
-                              <input type="radio" name="produto" value="gasolina" class="w-4 h-4 text-blue-600 bg-slate-700 border-slate-600 focus:ring-blue-500">
-                            </label>
-                    
-                            <!-- Opção: Álcool -->
-                            <label class="flex items-center justify-between p-3 rounded-none border border-slate-700 bg-indigo-500 hover:bg-slate-800 cursor-pointer transition text-white">
-                              <span class="font-extrabold text-sm">Álcool</span>
-                              <input type="radio" name="produto" value="alcool" class="w-4 h-4 text-blue-600 bg-slate-700 border-slate-600 focus:ring-blue-500">
-                            </label>
+                      <div class="flex flex-col gap-2 max-w-md w-full">
+                              <!-- Rótulo do Dropdown -->
+                              <label for="produto" class="text-xl font-semibold text-slate-300">
+                                Selecione o Produto:
+                              </label>
+                              
+                              <!-- Menu Dropdown -->
+                              <select 
+                                id="produto" 
+                                name="produto" 
+                                class="w-full p-3 bg-indigo-700 border border-slate-700 rounded-lg text-white font-medium text-base focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition cursor-pointer appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2394a3b8%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E')] bg-[length:12px_12px] bg-[right_1rem_center] bg-no-repeat pr-10"
+                              >
+                                <option value="petroleo" class="bg-indigo-700 text-white">Petróleo</option>
+                                <option value="diesel" class="bg-indigo-700 text-white">Diesel</option>
+                                <option value="gasolina" class="bg-indigo-700 text-white">Gasolina</option>
+                                <option value="alcool" class="bg-indigo-700 text-white">Álcool</option>
+                              </select>
                       </div>
+
                       <div class="flex items-center justify-between gap-4 max-w-md w-full">
                           <!-- Rótulo do Input -->
                           <label for="densidade" class="text-base font-extrabold text-slate-900 whitespace-nowrap">
