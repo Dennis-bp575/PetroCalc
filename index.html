@@ -202,7 +202,10 @@
                         const vcf = Math.exp(-alpha * dT * (1 + 0.8 * alpha * dT));
                         
                         // Atualiza ρ15 (ponto fixo: ρ15 = ρ20 / VCF)
-                        rho15 = rho20_kgm3 / vcf;
+                        
+                        const AJUSTE_KGM3 = 0.2;
+                        rho15 = rho20_kgm3 / vcf + AJUSTE_KGM3;
+
                     }
                 
                     // 5. Formatar a saída conforme a unidade solicitada
