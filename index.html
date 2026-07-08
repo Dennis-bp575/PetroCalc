@@ -192,22 +192,29 @@
                     const dT = 5.0; // 20°C - 15°C
                 
                     // 4. Iteração de Newton (ou ponto fixo) para encontrar ρ15
-                    let rho15 = rho20_kgm3; // chute inicial
-                    for (let i = 0; i < 12; i++) {
-                        // Coeficiente de expansão térmica a 15°C
+                    let rho15 = rho20_kgm3;
+                    let rho15_old;
+                    const tolerancia = 1e-10; // Precisão altíssima (0.0000000001 kg/m³)
+                    const maxIter = 100;      // Apenas para segurança, evitar loop infinito
+                    let iter = 0;
+                    
+                    for (iter = 0; iter < maxIter; iter++) {
+                        rho15_old = rho15;
+                        
                         const alpha = K0 / (rho15 * rho15) + K1 / rho15 + K2;
-                        
-                        // Fator de correção de volume (VCF) - da equação ASTM
-                        // ρ20 = ρ15 * exp(-α * ΔT * (1 + 0.8 * α * ΔT))
                         const vcf = Math.exp(-alpha * dT * (1 + 0.8 * alpha * dT));
+                        rho15 = rho20_kgm3 / vcf;
                         
-                        // Atualiza ρ15 (ponto fixo: ρ15 = ρ20 / VCF)
-                        
-                        const AJUSTE_KGM3 = 0.2;
-                        rho15 = rho20_kgm3 / vcf - AJUSTE_KGM3;
-
+                        // Verifica se mudou menos que a tolerância
+                        if (Math.abs(rho15 - rho15_old) < tolerancia) {
+                            break;
+                        }
                     }
-                
+
+                    // Aplica o ajuste empírico por último (ou mantenha dentro, se for estritamente necessário)
+                    rho15 -= AJUSTE_KGM3;
+                    
+                    // console.log(`Convergência atingida em ${iter + 1} iterações`);
                     // 5. Formatar a saída conforme a unidade solicitada
                     if (outputUnit === 'gcm3' || (outputUnit === 'auto' && inputIsGcm3)) {
                         return parseFloat((rho15 / 1000).toFixed(6)); // retorna em g/cm³
