@@ -149,17 +149,7 @@
                         // 3. --- SUA FÓRMULA DE CÁLCULO ---
                         // Criei uma lógica de exemplo baseada no produto selecionado
                         let resultadoFinal = 0;
-                    
-                        if (produto === 'petroleo') {
-                                  resultadoFinal = convertDensity20to15(densidadeNum);
-                                } else if (produto === 'gasolina') {
-                                  resultadoFinal = densidadeNum * 1.2;
-                                } else if (produto === 'diesel') {
-                                  resultadoFinal = densidadeNum * 1.1;
-                                } else if (produto === 'alcool') {
-                                  resultadoFinal = densidadeNum * 0.9;
-                        }
-                        // ----------------------------------
+                        resultadoFinal = convertDensity20to15(densidadeNum);
                     
                         // 4. Formata o resultado de volta para o padrão brasileiro (com vírgula e 4 casas decimais)
 
@@ -171,10 +161,10 @@
                             (resultadoAPI
                                 .toFixed(1)
                                 .replace('.', ','));
-                        console.log(resultadoFinal);
-                        console.log(densidadeAPI);
-                        console.log(resultadoAPI);
-                        console.log(resultadoAPIFormatado);
+                        //console.log(resultadoFinal);
+                        //console.log(densidadeAPI);
+                        //console.log(resultadoAPI);
+                        //console.log(resultadoAPIFormatado);
                         
                         // 5. Exibe o resultado na tela de forma elegante
                         document.getElementById('resultado-texto').innerText = resultadoFormatado;
