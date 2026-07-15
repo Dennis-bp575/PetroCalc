@@ -133,11 +133,11 @@
             
                     const densidadeInput = document.getElementById('densidade');
                     const LIMITE_CARACTERES = 6; 
-                    //densidadeInput.addEventListener('input', () => {
-                    //      if (densidadeInput.value.length >= LIMITE_CARACTERES) {
-                    //        densidadeInput.blur(); // Tira o foco do input e recolhe o teclado
-                    //      }
-                    //   });
+                    densidadeInput.addEventListener('input', () => {
+                          if (densidadeInput.value.length >= LIMITE_CARACTERES) {
+                            densidadeInput.blur(); // Tira o foco do input e recolhe o teclado
+                          }
+                       });
                     
                     function calcular() {
                               
@@ -152,13 +152,16 @@
                                 // 2. Limpeza dos dados: Transforma textos com vírgula em números decimais que o JS entende
                                 const densidadeNum = parseFloat(densidadeTexto.replace(',', '.'));
                                 const temperaturaNum = parseFloat(temperaturaTexto.replace(',', '.'));
+                                console.log("densidade:", densidadeTexto);
+                                console.log("temperatura:", temperaturaTexto);
                             
                                 // Validação simples caso o usuário apague tudo e deixe em branco
                                 if (isNaN(densidadeNum) || isNaN(temperaturaNum)) {
                                       alert("Por favor, preencha os campos de densidade e temperatura corretamente.");
                                       return;
                                 }
-                            
+                                console.log("entrou no cálculo");
+                        
                                 // 3. --- SUA FÓRMULA DE CÁLCULO ---
                                 // Criei uma lógica de exemplo baseada no produto selecionado
                                 let resultadoFinal = 0;
