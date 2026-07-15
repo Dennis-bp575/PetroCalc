@@ -107,6 +107,7 @@
                     <button
                         type="button"
                         onclick="calcular()"
+                        id="btnAcao"
                         class="w-full mt-4 p-3 bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white font-bold text-lg rounded-lg transition-all shadow-lg shadow-blue-600/20 active:scale-[0.98]"
                     >
                         Calcular
@@ -129,9 +130,18 @@
             </div>
         </div>
         <script>
-              function calcular() {
-                    
-                        // 1. Captura os valores que o usuário digitou ou selecionou na tela
+
+            const densidadeInput = document.getElementById('densidade');
+            const LIMITE_CARACTERES = 6; 
+            densidadeInput.addEventListener('input', () => {
+                  if (densidadeInput.value.length >= LIMITE_CARACTERES) {
+                    densidadeInput.blur(); // Tira o foco do input e recolhe o teclado
+                  }
+                });
+            
+            function calcular() {
+                      
+                          // 1. Captura os valores que o usuário digitou ou selecionou na tela
                         const produto = document.getElementById('produto').value;
                         const densidadeTexto = document.getElementById('densidade').value;
                         const temperaturaTexto = document.getElementById('temperatura').value;
@@ -170,7 +180,27 @@
                         document.getElementById('resultado-texto').innerText = resultadoFormatado;
                         document.getElementById('resultado-API').innerText = resultadoAPIFormatado;
                         document.getElementById('resultado-container').classList.remove('hidden');
-                      
+
+                        if (btnAcao.textContent === 'Calcular') {
+                        densidadeInput.disabled = true;
+                            produtoSelect.disabled = true;
+                            btnAcao.textContent = 'Recalcular';
+                          } 
+                        // Se o botão está no estado de RECALCULAR
+                          else {
+                                // Limpa o input e o resultado anterior
+                                densidadeInput.value = '';
+                                resultadoDisplay.textContent = '-';
+                            
+                                // Desbloqueia os campos e volta o botão para o original
+                                densidadeInput.disabled = false;
+                                produtoSelect.disabled = false;
+                                btnAcao.textContent = 'Calcular';
+                                
+                                // Opcional: foca no input novamente para o usuário digitar
+                                densidadeInput.focus();
+                          }
+                        
               };
 
                 /**
