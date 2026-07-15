@@ -63,9 +63,9 @@
                                 class="w-full p-3 bg-indigo-700 border border-slate-700 rounded-lg text-white font-medium text-base focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition cursor-pointer appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2394a3b8%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E')] bg-[length:12px_12px] bg-[right_1rem_center] bg-no-repeat pr-10"
                               >
                                 <option value="petroleo" class="bg-indigo-700 text-white">Petróleo</option>
-                                <option value="diesel" class="bg-indigo-700 text-white">Diesel</option>
-                                <option value="gasolina" class="bg-indigo-700 text-white">Gasolina</option>
-                                <option value="alcool" class="bg-indigo-700 text-white">Álcool</option>
+                                <option value="vlsfo" class="bg-indigo-700 text-white">VLSFO</option>
+                                <option value="mgo" class="bg-indigo-700 text-white">MGO</option>
+                                
                               </select>
                       </div>
 
@@ -191,25 +191,18 @@
                  * @returns {number} Densidade a 15°C na unidade solicitada
                  */
                 function convertDensity20to15(rho20, outputUnit = 'auto') {
-                    // 1. Detectar a unidade de entrada (se < 2, assume g/cm³)
-                    //const inputIsGcm3 = (rho20 < 2);
-                    //let rho20_kgm3 = inputIsGcm3 ? rho20 * 1000 : rho20;
-                
-                    // 2. Validar faixa permitida pela ASTM
-                    // if (rho20_kgm3 < 840 || rho20_kgm3 > 930) {
-                    //    console.warn('Densidade fora da faixa recomendada (840-930 kg/m³). O resultado pode ser impreciso.');
-                    //}
-
+                   
                     const resultado = Number((rho20 / Math.exp(-( (103.872 / Math.pow(rho20 * 1000, 2)) + (0.2701 / (rho20 * 1000)) ) * 5 * (1 + 0.8 * ( (103.872 / Math.pow(rho20 * 1000, 2)) + (0.2701 / (rho20 * 1000)) ) * 5))).toFixed(4));
-                    
-                    // const x = (103.872 / Math.pow(rho20 * 1000, 2)) + (0.2701 / (rho20 * 1000));
-                    // const resultado = Number((rho20 / Math.exp(-x * 5 * (1 + 0.8 * x * 5))).toFixed(4));
-                 
-                    // 5. Formatar a saída conforme a unidade solicitada
-                    //if (outputUnit === 'gcm3' || (outputUnit === 'auto' && inputIsGcm3)) {
-                    //    return parseFloat((resultado / 1000).toFixed(8)); // retorna em g/cm³
-                    //}
-                    return resultado; // retorna em kg/m³
+                    const resultadoVLSFO = Number((rho20 / Math.exp(-( (103.872 / Math.pow(rho20 * 1000, 2)) + (0.2701 / (rho20 * 1000)) ) * 5 * (1 + 0.8 * ( (103.872 / Math.pow(rho20 * 1000, 2)) + (0.2701 / (rho20 * 1000)) ) * 5))).toFixed(4));
+                    const resultadoMGO = Number((rho20 / Math.exp(-( (186.9696 / Math.pow(rho20 * 1000, 2)) + (0.4862 / (rho20 * 1000)) ) * 5 * (1 + 0.8 * ( (186.9696 / Math.pow(rho20 * 1000, 2)) + (0.4862 / (rho20 * 1000)) ) * 5))).toFixed(4));
+                    const produto = document.getElementById('produto').value;
+                   if (produto === 'petroleo') {
+                                  return resultado;
+                                } else if (produto === 'vlsfo') {
+                                  return resultadoVLSFO;
+                                } else if (produto === 'mgo') {
+                                  return resultadoMGO;
+                                } 
                 }
 
 
