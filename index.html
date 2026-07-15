@@ -130,109 +130,109 @@
             </div>
         </div>
         <script>
-
-            const densidadeInput = document.getElementById('densidade');
-            const LIMITE_CARACTERES = 6; 
-            densidadeInput.addEventListener('input', () => {
-                  if (densidadeInput.value.length >= LIMITE_CARACTERES) {
-                    densidadeInput.blur(); // Tira o foco do input e recolhe o teclado
-                  }
-                });
-            
-            function calcular() {
-                      
-                          // 1. Captura os valores que o usuário digitou ou selecionou na tela
-                        const produto = document.getElementById('produto').value;
-                        const densidadeTexto = document.getElementById('densidade').value;
-                        const temperaturaTexto = document.getElementById('temperatura').value;
-                        const btnAcao = document.getElementById('btnAcao');
-                        const densidadeInput = document.getElementById('densidade');
-                        const resultadoContainer = document.getElementById('resultado-container'); 
-                    
-                        // 2. Limpeza dos dados: Transforma textos com vírgula em números decimais que o JS entende
-                        const densidadeNum = parseFloat(densidadeTexto.replace(',', '.'));
-                        const temperaturaNum = parseFloat(temperaturaTexto.replace(',', '.'));
-                    
-                        // Validação simples caso o usuário apague tudo e deixe em branco
-                        if (isNaN(densidadeNum) || isNaN(temperaturaNum)) {
-                              alert("Por favor, preencha os campos de densidade e temperatura corretamente.");
-                              return;
-                        }
-                    
-                        // 3. --- SUA FÓRMULA DE CÁLCULO ---
-                        // Criei uma lógica de exemplo baseada no produto selecionado
-                        let resultadoFinal = 0;
-                        resultadoFinal = convertDensity20to15(densidadeNum);
-                    
-                        // 4. Formata o resultado de volta para o padrão brasileiro (com vírgula e 4 casas decimais)
-
-                        resultadoFinal += 0.0014
-                        const resultadoFormatado = resultadoFinal.toFixed(4).replace('.', ',');
-                        let densidadeAPI = Number(resultadoFinal.toFixed(4))
-                        let resultadoAPI = (141.5/(resultadoFinal+0.0005)) - 131.5;
-                        let resultadoAPIFormatado =
-                            (resultadoAPI
-                                .toFixed(1)
-                                .replace('.', ','));
-                        //console.log(resultadoFinal);
-                        //console.log(densidadeAPI);
-                        //console.log(resultadoAPI);
-                        //console.log(resultadoAPIFormatado);
-                        
-                        // 5. Exibe o resultado na tela de forma elegante
-                        document.getElementById('resultado-texto').innerText = resultadoFormatado;
-                        document.getElementById('resultado-API').innerText = resultadoAPIFormatado;
-                        document.getElementById('resultado-container').classList.remove('hidden');
-
-                        if (btnAcao.textContent === 'Calcular') {
-                            densidadeInput.disabled = true;
-                            btnAcao.textContent = 'Novo Calculo';
-                            btnAcao.classList.remove('bg-blue-600', 'hover:bg-blue-500', 'active:bg-blue-700', 'shadow-blue-600/20');
-                            btnAcao.classList.add('bg-red-600', 'hover:bg-red-500', 'active:bg-red-700', 'shadow-red-600/20');
-                          } 
-                        // Se o botão está no estado de RECALCULAR
-                          else {
-                                // Limpa o input e o resultado anterior
-                                densidadeInput.value = '';
-                            
-                                // Desbloqueia os campos e volta o botão para o original
-                                densidadeInput.disabled = false;
-                                btnAcao.textContent = 'Calcular';
-                                resultadoContainer.classList.add('hidden');
-                                btnAcao.classList.remove('bg-red-600', 'hover:bg-red-500', 'active:bg-red-700', 'shadow-red-600/20');
-                                btnAcao.classList.add('bg-blue-600', 'hover:bg-blue-500', 'active:bg-blue-700', 'shadow-blue-600/20');
-                                
-                                // Opcional: foca no input novamente para o usuário digitar
-                                setTimeout(() => {
-                                  densidadeInput.focus();
-                                }, 0);
+            document.addEventListener('DOMContentLoaded', () => {
+                    const densidadeInput = document.getElementById('densidade');
+                    const LIMITE_CARACTERES = 6; 
+                    densidadeInput.addEventListener('input', () => {
+                          if (densidadeInput.value.length >= LIMITE_CARACTERES) {
+                            densidadeInput.blur(); // Tira o foco do input e recolhe o teclado
                           }
-                        
-              };
+                        });
+                    
+                    function calcular() {
+                              
+                                  // 1. Captura os valores que o usuário digitou ou selecionou na tela
+                                const produto = document.getElementById('produto').value;
+                                const densidadeTexto = document.getElementById('densidade').value;
+                                const temperaturaTexto = document.getElementById('temperatura').value;
+                                const btnAcao = document.getElementById('btnAcao');
+                                const densidadeInput = document.getElementById('densidade');
+                                const resultadoContainer = document.getElementById('resultado-container'); 
+                            
+                                // 2. Limpeza dos dados: Transforma textos com vírgula em números decimais que o JS entende
+                                const densidadeNum = parseFloat(densidadeTexto.replace(',', '.'));
+                                const temperaturaNum = parseFloat(temperaturaTexto.replace(',', '.'));
+                            
+                                // Validação simples caso o usuário apague tudo e deixe em branco
+                                if (isNaN(densidadeNum) || isNaN(temperaturaNum)) {
+                                      alert("Por favor, preencha os campos de densidade e temperatura corretamente.");
+                                      return;
+                                }
+                            
+                                // 3. --- SUA FÓRMULA DE CÁLCULO ---
+                                // Criei uma lógica de exemplo baseada no produto selecionado
+                                let resultadoFinal = 0;
+                                resultadoFinal = convertDensity20to15(densidadeNum);
+                            
+                                // 4. Formata o resultado de volta para o padrão brasileiro (com vírgula e 4 casas decimais)
+        
+                                resultadoFinal += 0.0014
+                                const resultadoFormatado = resultadoFinal.toFixed(4).replace('.', ',');
+                                let densidadeAPI = Number(resultadoFinal.toFixed(4))
+                                let resultadoAPI = (141.5/(resultadoFinal+0.0005)) - 131.5;
+                                let resultadoAPIFormatado =
+                                    (resultadoAPI
+                                        .toFixed(1)
+                                        .replace('.', ','));
+                                //console.log(resultadoFinal);
+                                //console.log(densidadeAPI);
+                                //console.log(resultadoAPI);
+                                //console.log(resultadoAPIFormatado);
+                                
+                                // 5. Exibe o resultado na tela de forma elegante
+                                document.getElementById('resultado-texto').innerText = resultadoFormatado;
+                                document.getElementById('resultado-API').innerText = resultadoAPIFormatado;
+                                document.getElementById('resultado-container').classList.remove('hidden');
+        
+                                if (btnAcao.textContent === 'Calcular') {
+                                    densidadeInput.disabled = true;
+                                    btnAcao.textContent = 'Novo Calculo';
+                                    btnAcao.classList.remove('bg-blue-600', 'hover:bg-blue-500', 'active:bg-blue-700', 'shadow-blue-600/20');
+                                    btnAcao.classList.add('bg-red-600', 'hover:bg-red-500', 'active:bg-red-700', 'shadow-red-600/20');
+                                  } 
+                                // Se o botão está no estado de RECALCULAR
+                                  else {
+                                        // Limpa o input e o resultado anterior
+                                        densidadeInput.value = '';
+                                    
+                                        // Desbloqueia os campos e volta o botão para o original
+                                        densidadeInput.disabled = false;
+                                        btnAcao.textContent = 'Calcular';
+                                        resultadoContainer.classList.add('hidden');
+                                        btnAcao.classList.remove('bg-red-600', 'hover:bg-red-500', 'active:bg-red-700', 'shadow-red-600/20');
+                                        btnAcao.classList.add('bg-blue-600', 'hover:bg-blue-500', 'active:bg-blue-700', 'shadow-blue-600/20');
+                                        
+                                        // Opcional: foca no input novamente para o usuário digitar
+                                        setTimeout(() => {
+                                          densidadeInput.focus();
+                                        }, 0);
+                                  }
+                                
+                      };
+        
+                        /**
+                         * Converte densidade de petróleo de 20°C para 15°C conforme ASTM D1250 (API 11.1 - Tabela 53A)
+                         * 
+                         * @param {number} rho20 - Densidade a 20°C (ex: 0.8800 ou 880.0)
+                         * @param {string} outputUnit - 'auto' (mesma unidade da entrada), 'gcm3' ou 'kgm3'
+                         * @returns {number} Densidade a 15°C na unidade solicitada
+                         */
+                        function convertDensity20to15(rho20, outputUnit = 'auto') {
+                           
+                            const resultado = Number((rho20 / Math.exp(-( (103.872 / Math.pow(rho20 * 1000, 2)) + (0.2701 / (rho20 * 1000)) ) * 5 * (1 + 0.8 * ( (103.872 / Math.pow(rho20 * 1000, 2)) + (0.2701 / (rho20 * 1000)) ) * 5))).toFixed(4));
+                            const resultadoVLSFO = Number((rho20 / Math.exp(-( (103.872 / Math.pow(rho20 * 1000, 2)) + (0.2701 / (rho20 * 1000)) ) * 5 * (1 + 0.8 * ( (103.872 / Math.pow(rho20 * 1000, 2)) + (0.2701 / (rho20 * 1000)) ) * 5))).toFixed(4));
+                            const resultadoMGO = Number((rho20 / Math.exp(-( (186.9696 / Math.pow(rho20 * 1000, 2)) + (0.4862 / (rho20 * 1000)) ) * 5 * (1 + 0.8 * ( (186.9696 / Math.pow(rho20 * 1000, 2)) + (0.4862 / (rho20 * 1000)) ) * 5))).toFixed(4));
+                            const produto = document.getElementById('produto').value;
+                           if (produto === 'petroleo') {
+                                          return resultado;
+                                        } else if (produto === 'vlsfo') {
+                                          return resultadoVLSFO;
+                                        } else if (produto === 'mgo') {
+                                          return resultadoMGO;
+                                        } 
+                        }
 
-                /**
-                 * Converte densidade de petróleo de 20°C para 15°C conforme ASTM D1250 (API 11.1 - Tabela 53A)
-                 * 
-                 * @param {number} rho20 - Densidade a 20°C (ex: 0.8800 ou 880.0)
-                 * @param {string} outputUnit - 'auto' (mesma unidade da entrada), 'gcm3' ou 'kgm3'
-                 * @returns {number} Densidade a 15°C na unidade solicitada
-                 */
-                function convertDensity20to15(rho20, outputUnit = 'auto') {
-                   
-                    const resultado = Number((rho20 / Math.exp(-( (103.872 / Math.pow(rho20 * 1000, 2)) + (0.2701 / (rho20 * 1000)) ) * 5 * (1 + 0.8 * ( (103.872 / Math.pow(rho20 * 1000, 2)) + (0.2701 / (rho20 * 1000)) ) * 5))).toFixed(4));
-                    const resultadoVLSFO = Number((rho20 / Math.exp(-( (103.872 / Math.pow(rho20 * 1000, 2)) + (0.2701 / (rho20 * 1000)) ) * 5 * (1 + 0.8 * ( (103.872 / Math.pow(rho20 * 1000, 2)) + (0.2701 / (rho20 * 1000)) ) * 5))).toFixed(4));
-                    const resultadoMGO = Number((rho20 / Math.exp(-( (186.9696 / Math.pow(rho20 * 1000, 2)) + (0.4862 / (rho20 * 1000)) ) * 5 * (1 + 0.8 * ( (186.9696 / Math.pow(rho20 * 1000, 2)) + (0.4862 / (rho20 * 1000)) ) * 5))).toFixed(4));
-                    const produto = document.getElementById('produto').value;
-                   if (produto === 'petroleo') {
-                                  return resultado;
-                                } else if (produto === 'vlsfo') {
-                                  return resultadoVLSFO;
-                                } else if (produto === 'mgo') {
-                                  return resultadoMGO;
-                                } 
-                }
-
-
+            }
         </script>
 
 
