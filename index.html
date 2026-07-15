@@ -141,7 +141,7 @@
                     
                     function calcular() {
                               
-                                  // 1. Captura os valores que o usuário digitou ou selecionou na tela
+                                // 1. Captura os valores que o usuário digitou ou selecionou na tela
                                 const produto = document.getElementById('produto').value;
                                 const densidadeTexto = document.getElementById('densidade').value;
                                 const temperaturaTexto = document.getElementById('temperatura').value;
@@ -165,7 +165,6 @@
                                 let resultadoFinal = 0;
                         
                                 resultadoFinal = convertDensity20to15(densidadeNum);
-                                console.log("resultadoFinal = " + resultadoFinal);
                                 
                                 // 4. Formata o resultado de volta para o padrão brasileiro (com vírgula e 4 casas decimais)
         
@@ -177,20 +176,13 @@
                                     (resultadoAPI
                                         .toFixed(1)
                                         .replace('.', ','));
-                                //console.log(resultadoFinal);
-                                //console.log(densidadeAPI);
-                                //console.log(resultadoAPI);
-                                //console.log(resultadoAPIFormatado);
                                 
                                 // 5. Exibe o resultado na tela de forma elegante
                                 document.getElementById('resultado-texto').innerText = resultadoFormatado;
                                 document.getElementById('resultado-API').innerText = resultadoAPIFormatado;
                                 document.getElementById('resultado-container').classList.remove('hidden');
-                                console.log(btnAcao.textContent);
-                                console.log(btnAcao.textContent === 'Calcular');
-                                console.log(btnAcao.textContent.trim() === 'Calcular');
         
-                                if (btnAcao.textContent === 'Calcular') {
+                                if (btnAcao.textContent.trim() === 'Calcular') {
                                     densidadeInput.disabled = true;
                                     btnAcao.textContent = 'Novo Calculo';
                                     btnAcao.classList.remove('bg-blue-600', 'hover:bg-blue-500', 'active:bg-blue-700', 'shadow-blue-600/20');
