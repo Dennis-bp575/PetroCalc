@@ -192,16 +192,16 @@
                  */
                 function convertDensity20to15(rho20, outputUnit = 'auto') {
                     // 1. Detectar a unidade de entrada (se < 2, assume g/cm³)
-                    const inputIsGcm3 = (rho20 < 2);
-                    let rho20_kgm3 = inputIsGcm3 ? rho20 * 1000 : rho20;
+                    //const inputIsGcm3 = (rho20 < 2);
+                    //let rho20_kgm3 = inputIsGcm3 ? rho20 * 1000 : rho20;
                 
                     // 2. Validar faixa permitida pela ASTM
-                    if (rho20_kgm3 < 840 || rho20_kgm3 > 930) {
-                        console.warn('Densidade fora da faixa recomendada (840-930 kg/m³). O resultado pode ser impreciso.');
-                    }
+                    // if (rho20_kgm3 < 840 || rho20_kgm3 > 930) {
+                    //    console.warn('Densidade fora da faixa recomendada (840-930 kg/m³). O resultado pode ser impreciso.');
+                    //}
 
                     const resultado = Number((rho20 / Math.exp(-( (103.872 / Math.pow(rho20 * 1000, 2)) + (0.2701 / (rho20 * 1000)) ) * 5 * (1 + 0.8 * ( (103.872 / Math.pow(rho20 * 1000, 2)) + (0.2701 / (rho20 * 1000)) ) * 5))).toFixed(4));
-
+                    
                     // const x = (103.872 / Math.pow(rho20 * 1000, 2)) + (0.2701 / (rho20 * 1000));
                     // const resultado = Number((rho20 / Math.exp(-x * 5 * (1 + 0.8 * x * 5))).toFixed(4));
                  
