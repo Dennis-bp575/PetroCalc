@@ -206,9 +206,9 @@
                     // const resultado = Number((rho20 / Math.exp(-x * 5 * (1 + 0.8 * x * 5))).toFixed(4));
                  
                     // 5. Formatar a saída conforme a unidade solicitada
-                    if (outputUnit === 'gcm3' || (outputUnit === 'auto' && inputIsGcm3)) {
-                        return parseFloat((resultado / 1000).toFixed(8)); // retorna em g/cm³
-                    }
+                    //if (outputUnit === 'gcm3' || (outputUnit === 'auto' && inputIsGcm3)) {
+                    //    return parseFloat((resultado / 1000).toFixed(8)); // retorna em g/cm³
+                    //}
                     return parseFloat(resultado(6)); // retorna em kg/m³
                 }
 
