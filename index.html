@@ -147,7 +147,7 @@
                         const temperaturaTexto = document.getElementById('temperatura').value;
                         const btnAcao = document.getElementById('btnAcao');
                         const densidadeInput = document.getElementById('densidade');
-                        const resultadoDisplay = document.getElementById('resultado-texto');
+                        const resultadoContainer = document.querySelector('.resultado-container'); 
                     
                         // 2. Limpeza dos dados: Transforma textos com vírgula em números decimais que o JS entende
                         const densidadeNum = parseFloat(densidadeTexto.replace(',', '.'));
@@ -192,11 +192,11 @@
                           else {
                                 // Limpa o input e o resultado anterior
                                 densidadeInput.value = '';
-                                resultadoDisplay.textContent = '-';
                             
                                 // Desbloqueia os campos e volta o botão para o original
                                 densidadeInput.disabled = false;
                                 btnAcao.textContent = 'Calcular';
+                                resultadoContainer.hidden = true;
                                 
                                 // Opcional: foca no input novamente para o usuário digitar
                                 densidadeInput.focus();
