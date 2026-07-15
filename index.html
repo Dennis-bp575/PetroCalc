@@ -186,6 +186,9 @@
                                 document.getElementById('resultado-texto').innerText = resultadoFormatado;
                                 document.getElementById('resultado-API').innerText = resultadoAPIFormatado;
                                 document.getElementById('resultado-container').classList.remove('hidden');
+                                console.log(btnAcao.textContent);
+                                console.log(btnAcao.textContent === 'Calcular');
+                                console.log(btnAcao.textContent.trim() === 'Calcular');
         
                                 if (btnAcao.textContent === 'Calcular') {
                                     densidadeInput.disabled = true;
