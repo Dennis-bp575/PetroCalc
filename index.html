@@ -152,21 +152,21 @@
                                 // 2. Limpeza dos dados: Transforma textos com vírgula em números decimais que o JS entende
                                 const densidadeNum = parseFloat(densidadeTexto.replace(',', '.'));
                                 const temperaturaNum = parseFloat(temperaturaTexto.replace(',', '.'));
-                                console.log("densidade:", densidadeTexto);
-                                console.log("temperatura:", temperaturaTexto);
                             
                                 // Validação simples caso o usuário apague tudo e deixe em branco
                                 if (isNaN(densidadeNum) || isNaN(temperaturaNum)) {
                                       alert("Por favor, preencha os campos de densidade e temperatura corretamente.");
                                       return;
                                 }
-                                console.log("entrou no cálculo");
+                                
                         
                                 // 3. --- SUA FÓRMULA DE CÁLCULO ---
                                 // Criei uma lógica de exemplo baseada no produto selecionado
                                 let resultadoFinal = 0;
+                        
                                 resultadoFinal = convertDensity20to15(densidadeNum);
-                            
+                                console.log("resultadoFinal = " + resultadoFinal);
+                                
                                 // 4. Formata o resultado de volta para o padrão brasileiro (com vírgula e 4 casas decimais)
         
                                 resultadoFinal += 0.0014
